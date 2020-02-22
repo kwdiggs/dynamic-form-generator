@@ -1,0 +1,36 @@
+<ng-container *ngIf="form">
+    <sh-dynamic-form *ngIf="!uiConfig.arraySpec?.isArray"
+                     [form]="form"
+                     [title]="uiConfig.title"
+                     [fields]="uiConfig.fields"
+                     [rowLength]="uiConfig.rowLength">
+    </sh-dynamic-form>
+
+    <ng-container *ngIf="uiConfig.arraySpec?.isArray" [formGroup]="form">
+        <ng-container  [formArrayName]="uiConfig.arraySpec.name">
+            <ng-container *ngFor="let array of form.controls[uiConfig.arraySpec.name].controls; let i = index">
+                <ng-container [formGroupName]="i">
+                    <sh-dynamc ic-form
+                               [form]="form.controls[uiConfig.arraySpec.name].controls[i]"
+                               [title]="uiConfig.title"
+                               [fields]="uiConfig.fields"
+                               [rowLength]="uiConfig.rowLength"
+                    >
+                        </sh-dynamcic-form>
+
+                        <a *ngIf="uiConfig.arraySpec.hasRemoveButton" class="btn btn-danger" (click)="onRemoveArrayGroup(i)">
+                            {{uiConfig.arraySpec.removeButtonText}}
+                        </a>
+
+                        <hr>
+                </ng-container>
+            </ng-container>
+
+            <a *ngIf="uiConfig.arraySpec.hasAddButton" class="btn btn-neutral" (click)="onAddArrayGroup()">
+                {{uiConfig.arraySpec.addButtonText}}
+            </a>
+        </ng-container>
+    </ng-container>
+</ng-container>
+
+

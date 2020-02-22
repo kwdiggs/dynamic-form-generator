@@ -1,0 +1,54 @@
+$margin-amount: 8px;
+
+.form-group {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.field-wrap {
+  width: calc(100% - #{$margin-amount});
+  margin-right: $margin-amount;
+  margin-bottom: 12px;
+}
+
+.nested-dynamic-field {
+  margin-right: $margin-amount;
+}
+
+div.solo-nested-field {
+  width: 100%;
+  margin-right: 0;
+}
+
+.row-length-one {
+  width: calc(100% - #{$margin-amount});
+}
+
+.row-length-two {
+  width: calc(100% / 2 - #{$margin-amount});
+}
+
+.row-length-three {
+  width: calc(100% / 3 - #{$margin-amount});
+}
+
+.row-length-four {
+  width: calc(100% / 4 - #{$margin-amount});
+}
+
+.row-length-five {
+  width: calc(100% / 5 - #{$margin-amount});
+}
+
+.row-length-six {
+  width: calc(100% / 6 - #{$margin-amount});
+}
+
+.row-length-seven {
+  width: calc(100% / 7 - #{$margin-amount});
+}
+
+.row-length-eight {
+  width: calc(100% / 8 - #{$margin-amount});
+}

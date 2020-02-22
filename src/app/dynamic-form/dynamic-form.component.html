@@ -1,0 +1,63 @@
+<div *ngIf="!form">Unable to load form object.</div>
+
+<ng-container *ngIf="form">
+    <h1 *ngIf="title && title.type === 'h1'">{{title.text}}</h1>
+    <h2 *ngIf="title && title.type === 'h2'">{{title.text}}</h2>
+    <h3 *ngIf="title && title.type === 'h3'">{{title.text}}</h3>
+    <h4 *ngIf="title && title.type === 'h4'">{{title.text}}</h4>
+    <h5 *ngIf="title && title.type === 'h5'">{{title.text}}</h5>
+
+    <div class="form-group">
+        <ng-container *ngFor="let field of fields;">
+            <div
+                    class="field-wrap"
+                    [ngClass]="{
+                  'tms-dropdownlist-wrap': (field.type === 'dropdownList' || field.type === 'dropDownListDict'),
+                  'tms-checkbox-wrap': (field.type === 'checkbox'),
+                  'tms-number-wrap': (field.type === 'number'),
+                  'tms-text-wrap': (field.type === 'text'),
+                  'row-length-one': (rowLength === 1),
+                  'row-length-two': (rowLength === 2),
+                  'row-length-three': (rowLength === 3),
+                  'row-length-four': (rowLength === 4),
+                  'row-length-five': (rowLength === 5),
+                  'row-length-six': (rowLength === 6),
+                  'row-length-seven': (rowLength === 7),
+                  'row-length-eight': (rowLength === 8)
+                }"
+            >
+                <sh-dynamic-field
+                        *ngIf="field.type !== 'nested'"
+                        [form]="form"
+                        [field]="field">
+                </sh-dynamic-field>
+
+                <ng-container *ngIf="field.type === 'nested'">
+                    <ng-container *ngFor="let nestedField of field.fields; last as last">
+                        <div
+                                class="inline-block nested-dynamic-field"
+                                [ngClass]="{
+                                'solo-nested-field': (field.fields.length === 1),
+                                'row-length-one': (field.fields.length === 1),
+                                'row-length-two': (field.fields.length === 2),
+                                'row-length-three': (field.fields.length === 3),
+                                'row-length-four': (field.fields.length === 4),
+                                'row-length-five': (field.fields.length === 5),
+                                'row-length-six': (field.fields.length === 6),
+                                'row-length-seven': (field.fields.length === 7),
+                                'row-length-eight': (field.fields.length === 8)
+                            }"
+                        >
+                            <sh-dynamic-field
+                                    [form]="form"
+                                    [field]="nestedField"
+                                    [lastNestedField]="last"
+                            >
+                            </sh-dynamic-field>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </ng-container>
+    </div>
+</ng-container>

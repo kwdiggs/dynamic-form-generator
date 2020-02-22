@@ -1,0 +1,95 @@
+<ng-container *ngIf="form && field" [formGroup]="form">
+    <label>{{field.label}}</label>
+
+    <hr *ngIf="field.type === 'hr'">
+
+    <button
+            *ngIf="field.type === 'button'"
+            class="full-width"
+            type="button"
+    >
+        {{field.placeholder}}
+    </button>
+
+    <input
+            *ngIf="field.type === 'text'"
+            kendoTextBox
+            [formControlName]="field.controlName"
+            type="text"
+            class="tms-text"
+            [placeholder]="field.placeholder || ''"
+    >
+
+    <kendo-dropdownlist
+            *ngIf="field.type === 'dropdownList'"
+            [formControlName]="field.controlName"
+            class="tms-dropdownlist"
+            [data]="field.options"
+    >
+    </kendo-dropdownlist>
+
+    <kendo-dropdownlist
+            *ngIf="field.type === 'dropdownListDict'"
+            [formControlName]="field.controlName"
+            class="tms-dropdownlist"
+            [data]="field.options"
+            [textField]="field.textField"
+            [valueField]="field.valueField"
+    >
+    </kendo-dropdownlist>
+
+    <kendo-numerictextbox
+            *ngIf="field.type === 'number'"
+            [formControlName]="field.controlName"
+            class="tms-number"
+            [step]="field.step"
+            [placeholder]="field.placeholder || ''"
+            [format]="field.format || undefined"
+            [min]="field.min || undefined"
+    >
+    </kendo-numerictextbox>
+
+    <div *ngIf="field.type === 'checkbox'"
+         [formControlName]="field.controlName"
+         class="tms-checkbox-content-wrap"
+         [class.active]="switch.checked"
+         [class.inactive]="!switch.checked || ''"
+    >
+        <kendo-switch
+            #switch
+            [formControlName]="field.controlName"
+            class="tms-checkbox"
+        >
+        </kendo-switch>
+    </div>
+
+    <kendo-datepicker
+            *ngIf="field.type === 'date'"
+            [formControlName]="field.controlName"
+            class="full-width"
+            [class.last-nested-field]="lastNestedField"
+            [popupSettings]="{animate: false}"
+            [placeholder]="field.placeholder || ''"
+    >
+    </kendo-datepicker>
+
+    <kendo-timepicker
+            *ngIf="field.type === 'time'"
+            [formControlName]="field.controlName"
+            class="full-width"
+            [class.last-nested-field]="lastNestedField"
+            [popupSettings]="{animate: false}"
+            [placeholder]="field.placeholder || ''"
+    >
+    </kendo-timepicker>
+
+    <kendo-multiselect
+            *ngIf="field.type === 'multiselect'"
+            [formControlName]="field.controlName"
+            [data]="field.options"
+            [textField]="field.displayProperty"
+            [valueField]="field.valueProperty"
+            [valuePrimitive]="true"
+    >
+    </kendo-multiselect>
+</ng-container>
